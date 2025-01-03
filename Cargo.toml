@@ -1,0 +1,62 @@
+[workspace]
+
+[package]
+name = "monitoringair"
+version = "0.1.0"
+edition = "2021"
+publish = false
+default-run = "monitoringair-cli"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace.dependencies]
+loco-rs = { version = "0.12.0" }
+
+[dependencies]
+
+loco-rs = { workspace = true }
+migration = { path = "migration" }
+xlsxwriter = "0.6.1"
+aws-sdk-s3 = { version = "1.23.0", features = ["behavior-version-latest"] }
+
+serde = { version = "1.0.197", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1.33.0", default-features = false }
+async-trait = "0.1.74"
+tracing = "0.1.40"
+chrono = "0.4"
+validator = { version = "0.18" }
+sea-orm = { version = "1.1.0", features = [
+  "sqlx-sqlite",
+  "sqlx-postgres",
+  "runtime-tokio-rustls",
+  "macros",
+] }
+
+
+
+axum = { version = "0.7.5", features = ["multipart"] }
+include_dir = "0.7"
+uuid = { version = "1.6.0", features = ["v4"] }
+tracing-subscriber = { version = "0.3.17", features = ["env-filter", "json"] }
+aws-config = { version = "1.1.8", features = ["behavior-version-latest"] }
+aws-credential-types = { version = "1.1.8", features = ["hardcoded-credentials"] }
+image = "0.25.1"
+thiserror = "1.0.58"
+tower-http = { version = "0.5.2", features = ["timeout"] }
+
+[[bin]]
+name = "monitoringair-cli"
+path = "src/bin/main.rs"
+required-features = []
+
+[[bin]]
+name = "tool"
+path = "src/bin/tool.rs"
+required-features = []
+
+[dev-dependencies]
+serial_test = "3.1.1"
+rstest = "0.21.0"
+loco-rs = { workspace = true, features = ["testing"] }
+insta = { version = "1.34.0", features = ["redactions", "yaml", "filters"] }
