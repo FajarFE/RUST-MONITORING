@@ -64,7 +64,6 @@ pub async fn list(
     let workbook_path = format!("/tmp/{}", &workbook_filename); // Menyimpan file di direktori sementara
     let data_clone = data.clone();
     let workbook_path_clone = workbook_path.clone();
-
     tokio::task::spawn_blocking(move || {
         let workbook = Workbook::new(&workbook_path_clone).unwrap();
         let mut sheet = workbook.add_worksheet(Some("Data")).unwrap();

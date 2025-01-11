@@ -14,12 +14,12 @@ pub struct Migrator;
 impl MigratorTrait for Migrator {
     fn migrations() -> Vec<Box<dyn MigrationTrait>> {
         vec![
-            // inject-below (do not remove this comment)
-            Box::new(m20250102_105946_monitoring_data::Migration),
-            Box::new(m20250102_105814_monitorings::Migration),
-            Box::new(m20250102_105718_limitations::Migration),
-            Box::new(m20250102_105614_category_fishes::Migration),
             Box::new(m20220101_000001_users::Migration),
+            Box::new(m20250102_105614_category_fishes::Migration),
+            Box::new(m20250102_105718_limitations::Migration),
+            Box::new(m20250102_105814_monitorings::Migration),
+            Box::new(m20250102_105946_monitoring_data::Migration),
+            // inject-below (do not remove this comment)
             // inject-above (do not remove this comment)
         ]
     }
